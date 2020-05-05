@@ -7,6 +7,8 @@ services:
         restart: always
         environment:
             MYSQL_ROOT_PASSWORD: password
+        # networks:
+        #     - test_network_1
     admin:
         image: adminer:latest
         container_name: admin
@@ -14,3 +16,18 @@ services:
             - mysql
         ports:
             - 8088:8080
+        # networks:
+        #     - test_network_1
+        #     - test_network_2
+
+# networks:
+    # To connect to an external network
+    # default:
+    #     external:
+    #         name: external_network_name
+
+    # test_network_1:
+    #     driver: bridge # default
+
+    # test_network_2:
+    #     driver: bridge # default
