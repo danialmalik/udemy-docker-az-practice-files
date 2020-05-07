@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+    nginx:
+        image: nginx:latest
+        restart: always
+        volumes:
+            - nginx_volume:/usr/share/nginx/html/vol
+            # - /home/tmp: /home/tmp # can also mount a host directory directly
+        ports:
+            - 8088:80
+
+volumes:
+    nginx_volume:
+        driver: local
