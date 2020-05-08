@@ -1,0 +1,21 @@
+version: "3"
+
+services:
+    nginx:
+        image: _nginx:latest
+        build: .
+        environment:
+            TEST_ENV: testing123
+        restart: always
+        volumes:
+            - nginx_volume:/usr/share/nginx/html/vol
+    httpd:
+        image: httpd:latest
+        ports:
+            - 81:80
+            - 8081:8000
+
+
+volumes:
+    nginx_volume:
+        driver: local
