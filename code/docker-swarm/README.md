@@ -102,3 +102,8 @@ To demote, run
 ```
 docker node demote <node_name>
 ```
+
+8. Get certificate of swarm
+```
+docker swarm ca
+```

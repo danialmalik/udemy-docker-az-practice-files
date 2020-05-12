@@ -1,0 +1,45 @@
+version: "3.4"
+
+services:
+    nginx:
+        image: nginx
+        configs:
+            - swarm.crt
+        secrets:
+            - swarm.crt
+            # or
+            # - source: swarm.crt
+            # target: /run/test.cert
+        deploy:
+            mode: replicated
+            replicas: 2
+            labels: # for metadata. can be used with any object: volume, network, service or node.
+                com.docker.descr: "Test description"
+            restart_policy:
+                condition: any
+                delay: 5s
+                max_attempts: 3
+                window: 120s
+            placement:
+                constraints:
+                    - node.role == manager
+                # preferences:
+                #     spread: node.labels.zone    # spread service across all node with label zone
+                #                                 # i.e. use "zone" value for evenly dividing service
+            resources:
+                limits:
+                    memory: 50M
+                reservations:
+                    cpus: '0.10'
+            update_config:
+                parallelism: 1 # how many replicas to update at once
+                delay: 10s # start-up delay
+                monitor: 5s
+
+configs:
+    swarm.crt:
+        file: ./swarm.crt
+
+secrets:
+    swarm.crt:
+        file: ./swarm.crt
