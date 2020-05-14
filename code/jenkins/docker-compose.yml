@@ -1,0 +1,17 @@
+version: "3.4"
+
+services:
+    jenkins:
+        container_name: jenkins
+        image: jenkins/jenkins:custom
+        build: .
+        volumes:
+            - jenkins_home:/var/jenkins_home
+            - /var/run/docker.sock:/var/run/docker.sock
+            - /usr/local/bin/docker:/bin/docker
+        ports:
+            - 8080:8080
+            - 50000:50000
+
+volumes:
+    jenkins_home:
