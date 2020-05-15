@@ -3,7 +3,9 @@ pipeline {
   stages {
     stage('docker npm version') {
       agent {
-          docker { image 'node:latest' }
+          docker {
+            image 'node:latest'
+            }
       }
       steps {
         sh "node -v"
@@ -13,6 +15,7 @@ pipeline {
     stage('dockerfile npm version') {
       agent {
           dockerfile true
+          args '-f jenkins/2.docker-agents/Dockerfile'
       }
       steps {
         sh "node -v"
