@@ -1,6 +1,8 @@
 # Jenkins
 https://github.com/jenkinsci/docker/blob/master/README.md
 
+- Activate the default (manager) docker-machine.
+
 - Install and run jenkins using the command below (official command from the documentation)
 ```
 docker run -d -p 8080:8080 -p 50000:50000 -v jenkins_home:/var/jenkins_home --name jenkins jenkins/jenkins:lts
@@ -22,3 +24,10 @@ a1d6106f22744154836b3bbed965e4a5
 docker-machine ip [machine-name]
 ```
 to get the IP of machine. Then open `<IP-of-machine>:8080` in browser to open jenkins
+
+
+### First job
+
+- You can create a simple job and execute shell commands in it (using FreeStyle Project)
+OR
+- You can copy the content from the jenkinsfile and paste it into the pipeline script area of Pipeline project.
