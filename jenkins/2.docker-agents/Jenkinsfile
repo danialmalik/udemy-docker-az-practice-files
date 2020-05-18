@@ -14,8 +14,7 @@ pipeline {
     }
     stage('dockerfile npm version') {
       agent {
-          docker {
-            dockerfile true
+          dockerfile {
             dir 'jenkins/2.docker-agents/'
             filename 'Dockerfile'
           }
